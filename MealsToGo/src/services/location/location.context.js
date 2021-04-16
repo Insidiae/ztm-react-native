@@ -6,7 +6,7 @@ export const LocationContext = createContext();
 
 export const LocationContextProvider = ({ children }) => {
   const [location, setLocation] = useState(null);
-  const [keyword, setKeyword] = useState("");
+  const [keyword, setKeyword] = useState("Chicago");
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
 

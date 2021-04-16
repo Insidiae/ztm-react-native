@@ -7,6 +7,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { SafeArea } from "../../components/utility/SafeArea.component";
 
 import { RestaurantsNavigator } from "./Restaurants.navigator";
+import { MapScreen } from "../../features/map/screens/Map.screen";
 
 const Tab = createBottomTabNavigator();
 
@@ -24,12 +25,6 @@ const TAB_ICON = {
     unfocused: "md-settings-outline",
   },
 };
-
-const MapScreen = () => (
-  <SafeArea>
-    <Text>Map!</Text>
-  </SafeArea>
-);
 
 const SettingsScreen = () => (
   <SafeArea>
