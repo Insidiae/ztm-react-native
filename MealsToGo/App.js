@@ -32,28 +32,10 @@ if (!firebase.apps.length) {
 }
 
 export default function App() {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-
-  useEffect(() => {
-    firebase
-      .auth()
-      .signInWithEmailAndPassword("test@email.com", "password")
-      .then((user) => {
-        setIsAuthenticated(true);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, []);
-
   const [oswaldLoaded] = useOswald({ Oswald_400Regular });
   const [latoLoaded] = useLato({ Lato_400Regular });
 
   if (!oswaldLoaded || !latoLoaded) {
-    return null;
-  }
-
-  if (!isAuthenticated) {
     return null;
   }
 
