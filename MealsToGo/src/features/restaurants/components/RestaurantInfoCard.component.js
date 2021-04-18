@@ -37,7 +37,7 @@ export const RestaurantInfoCard = ({ restaurant = {} }) => {
 
   return (
     <FadeInView duration={500}>
-      <RestaurantCard elevation={5}>
+      <RestaurantCard elevation={2}>
         <Favourite restaurant={restaurant} />
         <RestaurantCardCover key={name} source={{ uri: photos[0] }} />
         <Info>

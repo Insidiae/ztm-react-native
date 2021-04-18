@@ -1,5 +1,5 @@
 import React, { useState, useContext, useCallback } from "react";
-import { TouchableOpacity } from "react-native";
+import { ScrollView, TouchableOpacity } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { List, Avatar } from "react-native-paper";
 import styled from "styled-components/native";
@@ -9,7 +9,21 @@ import { Spacer } from "../../../components/spacer/Spacer.component";
 import { Text } from "../../../components/typography/Text.component";
 import { SafeArea } from "../../../components/utility/SafeArea.component";
 
+import { colors } from "../../../infrastructure/theme/colors";
+
 import { AuthenticationContext } from "../../../services/authentication/authentication.context";
+
+const SettingsBackground = styled.ImageBackground.attrs({
+  source: require("../../../../assets/home_bg.jpg"),
+})`
+  position: absolute;
+  width: 100%;
+  height: 100%;
+`;
+
+const TransparentSafeArea = styled(SafeArea)`
+  background-color: transparent;
+`;
 
 const AvatarContainer = styled.View`
   align-items: center;
@@ -17,6 +31,7 @@ const AvatarContainer = styled.View`
 
 const SettingsItem = styled(List.Item)`
   padding: ${(props) => props.theme.space[3]};
+  background-color: rgba(255, 255, 255, 0.4);
 `;
 
 export const SettingsScreen = ({ navigation }) => {
@@ -36,32 +51,69 @@ export const SettingsScreen = ({ navigation }) => {
   );
 
   return (
-    <SafeArea>
-      <AvatarContainer>
-        <TouchableOpacity onPress={() => navigation.navigate("Camera")}>
-          {photo ? (
-            <Avatar.Image size={180} source={{ uri: photo }} />
-          ) : (
-            <Avatar.Icon size={180} icon="human" backgroundColor="#2182BD" />
-          )}
-        </TouchableOpacity>
-        <Spacer position="top" size="large">
-          <Text variant="label">{user.email}</Text>
-        </Spacer>
-      </AvatarContainer>
-      <List.Section>
-        <SettingsItem
-          title="Favourites"
-          description="View your favourites"
-          left={(props) => <List.Icon {...props} color="black" icon="heart" />}
-          onPress={() => navigation.navigate("Favourites")}
-        />
-        <SettingsItem
-          title="Logout"
-          left={(props) => <List.Icon {...props} color="black" icon="door" />}
-          onPress={onLogout}
-        />
-      </List.Section>
-    </SafeArea>
+    <SettingsBackground>
+      <TransparentSafeArea>
+        <ScrollView>
+          <AvatarContainer>
+            <TouchableOpacity onPress={() => navigation.navigate("Camera")}>
+              {photo ? (
+                <Avatar.Image size={180} source={{ uri: photo }} />
+              ) : (
+                <Avatar.Icon
+                  size={180}
+                  icon="human"
+                  backgroundColor={colors.brand.primary}
+                />
+              )}
+            </TouchableOpacity>
+            <Spacer position="top" size="large">
+              <Text variant="label">{user.email}</Text>
+            </Spacer>
+          </AvatarContainer>
+          <List.Section>
+            <SettingsItem
+              title="Favourites"
+              description="View your favourites"
+              left={(props) => (
+                <List.Icon
+                  {...props}
+                  color={colors.ui.favourite}
+                  icon="heart"
+                />
+              )}
+              onPress={() => navigation.navigate("Favourites")}
+            />
+            <Spacer />
+            <SettingsItem
+              title="Payment"
+              left={(props) => (
+                <List.Icon {...props} color={colors.ui.secondary} icon="cart" />
+              )}
+              onPress={() => null}
+            />
+            <Spacer />
+            <SettingsItem
+              title="Order History"
+              left={(props) => (
+                <List.Icon
+                  {...props}
+                  color={colors.ui.secondary}
+                  icon="history"
+                />
+              )}
+              onPress={() => null}
+            />
+            <Spacer />
+            <SettingsItem
+              title="Logout"
+              left={(props) => (
+                <List.Icon {...props} color={colors.ui.secondary} icon="door" />
+              )}
+              onPress={onLogout}
+            />
+          </List.Section>
+        </ScrollView>
+      </TransparentSafeArea>
+    </SettingsBackground>
   );
 };

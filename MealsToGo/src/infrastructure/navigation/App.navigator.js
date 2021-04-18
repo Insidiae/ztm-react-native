@@ -6,6 +6,8 @@ import { RestaurantsNavigator } from "./Restaurants.navigator";
 import { MapScreen } from "../../features/map/screens/Map.screen";
 import { SettingsNavigator } from "./Settings.navigator";
 
+import { colors } from "../theme/colors";
+
 import { FavouritesContextProvider } from "../../services/favourites/favourites.context";
 import { LocationContextProvider } from "../../services/location/location.context";
 import { RestaurantsContextProvider } from "../../services/restaurants/restaurants.context";
@@ -46,8 +48,8 @@ export const AppNavigator = () => {
           <Tab.Navigator
             screenOptions={createScreenOptions}
             tabBarOptions={{
-              activeTintColor: "tomato",
-              inactiveTintColor: "gray",
+              activeTintColor: colors.brand.primary,
+              inactiveTintColor: colors.brand.muted,
             }}>
             <Tab.Screen name="Restaurants" component={RestaurantsNavigator} />
             <Tab.Screen name="Map" component={MapScreen} />
