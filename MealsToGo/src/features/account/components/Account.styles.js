@@ -1,9 +1,16 @@
-import React from "react";
 import { Button, TextInput } from "react-native-paper";
 import styled from "styled-components/native";
 
 import { Text } from "../../../components/typography/Text.component";
 import { colors } from "../../../infrastructure/theme/colors";
+
+export const AnimationWrapper = styled.View`
+  position: absolute;
+  top: 30px;
+  width: 100%;
+  height: 40%;
+  padding: ${(props) => props.theme.space[2]};
+`;
 
 export const Title = styled(Text)`
   font-size: 30px;

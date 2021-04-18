@@ -1,6 +1,8 @@
 import React from "react";
+import LottieView from "lottie-react-native";
 
 import {
+  AnimationWrapper,
   Title,
   AccountBackground,
   AccountCover,
@@ -15,6 +17,15 @@ export const AccountScreen = ({ navigation }) => {
   return (
     <AccountBackground>
       <AccountCover />
+      <AnimationWrapper>
+        <LottieView
+          key="animation"
+          autoPlay
+          loop
+          resizeMode="cover"
+          source={require("../../../../assets/watermelon.json")}
+        />
+      </AnimationWrapper>
       <Title>Meals to Go</Title>
       <AccountContainer>
         <AuthButton
