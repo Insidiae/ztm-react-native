@@ -1,6 +1,7 @@
 import React from "react";
 import { SvgXml } from "react-native-svg";
 
+import { FadeInView } from "../../../components/animations/fade.animation";
 import { Favourite } from "../../../components/favourites/Favourite.component";
 import { Spacer } from "../../../components/spacer/Spacer.component";
 import { Text } from "../../../components/typography/Text.component";
@@ -35,34 +36,36 @@ export const RestaurantInfoCard = ({ restaurant = {} }) => {
   const ratingArray = Array.from(new Array(Math.floor(rating)));
 
   return (
-    <RestaurantCard elevation={5}>
-      <Favourite restaurant={restaurant} />
-      <RestaurantCardCover key={name} source={{ uri: photos[0] }} />
-      <Info>
-        <Text variant="label">{name}</Text>
-        <Section>
-          <Rating>
-            {ratingArray.map((e, i) => (
-              <SvgXml
-                key={`star-${placeId}-${i}`}
-                xml={star}
-                width={20}
-                height={20}
-              />
-            ))}
-          </Rating>
-          <SectionEnd>
-            {isClosedTemporarily && <Text variant="error">TEMP. CLOSED</Text>}
-            <Spacer position="left" size="large">
-              {isOpenNow && <SvgXml xml={open} width={20} height={20} />}
-            </Spacer>
-            <Spacer position="left" size="large">
-              <Icon source={{ uri: icon }} />
-            </Spacer>
-          </SectionEnd>
-        </Section>
-        <Text variant="caption">{address}</Text>
-      </Info>
-    </RestaurantCard>
+    <FadeInView duration={500}>
+      <RestaurantCard elevation={5}>
+        <Favourite restaurant={restaurant} />
+        <RestaurantCardCover key={name} source={{ uri: photos[0] }} />
+        <Info>
+          <Text variant="label">{name}</Text>
+          <Section>
+            <Rating>
+              {ratingArray.map((e, i) => (
+                <SvgXml
+                  key={`star-${placeId}-${i}`}
+                  xml={star}
+                  width={20}
+                  height={20}
+                />
+              ))}
+            </Rating>
+            <SectionEnd>
+              {isClosedTemporarily && <Text variant="error">TEMP. CLOSED</Text>}
+              <Spacer position="left" size="large">
+                {isOpenNow && <SvgXml xml={open} width={20} height={20} />}
+              </Spacer>
+              <Spacer position="left" size="large">
+                <Icon source={{ uri: icon }} />
+              </Spacer>
+            </SectionEnd>
+          </Section>
+          <Text variant="caption">{address}</Text>
+        </Info>
+      </RestaurantCard>
+    </FadeInView>
   );
 };

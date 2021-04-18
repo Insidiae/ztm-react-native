@@ -5,6 +5,7 @@ import styled from "styled-components/native";
 
 import { Search } from "../components/Search.component";
 import { RestaurantInfoCard } from "../components/RestaurantInfoCard.component";
+import { RestaurantList } from "../components/RestaurantList.component";
 
 import { FavouritesBar } from "../../../components/favourites/FavouritesBar.component";
 import { Spacer } from "../../../components/spacer/Spacer.component";
@@ -22,12 +23,6 @@ const LoadingContainer = styled.View`
 const Loading = styled(ActivityIndicator)`
   margin-left: -25px;
 `;
-
-const RestaurantList = styled.FlatList.attrs({
-  contentContainerStyle: {
-    padding: 16,
-  },
-})``;
 
 export const RestaurantsScreen = ({ navigation }) => {
   const { restaurants, isLoading } = useContext(RestaurantsContext);
